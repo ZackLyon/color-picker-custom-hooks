@@ -12,6 +12,7 @@ export default function ColorPicker() {
 
   return (
     <>
+      {console.log(didChangeColor)}
       <fieldset className={styles.colorPickerForm}>
         <legend>
           {didChangeColor
