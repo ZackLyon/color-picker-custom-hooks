@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 import Display from '../../components/Display/Display';
+import useColorPicker from '../../hooks/useColorPicker.js';
 import styles from './ColorPicker.css';
 
 export default function ColorPicker() {
-  const [fgColor, setFgColor] = useState('#ffcc00');
-  const [bgColor, setBgColor] = useState('#212121');
-  const [content, setContent] = useState('Hello, world!');
-  const [didChangeColor, setDidChangeColor] = useState(false);
+  const [{ fgColor, bgColor, content, didChangeColor }, handleChange] =
+    useColorPicker({});
+
   const [affirmation, setAffirmation] = useState('');
 
   useEffect(() => {
@@ -21,26 +21,6 @@ export default function ColorPicker() {
     const randomIndex = Math.floor(Math.random() * affirmations.length);
     setAffirmation(affirmations[randomIndex]);
   }, [bgColor, fgColor]);
-
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    switch (name) {
-      case 'fgColor':
-        setFgColor(value);
-        setDidChangeColor(true);
-        break;
-      case 'bgColor':
-        setBgColor(value);
-        setDidChangeColor(true);
-        break;
-      case 'content':
-        setDidChangeColor(false);
-        setContent(value);
-        break;
-      default:
-        break;
-    }
-  };
 
   return (
     <>
